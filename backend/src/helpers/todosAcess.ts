@@ -40,21 +40,11 @@ export async function getAllTodosByUserId(userId: string): Promise<TodoItem[]> {
             ':imageId': userId
         }
     }).promise()
-    return result.Items as TodoItem[] 
+    const results = result.Items
+    return results as TodoItem[] 
 }
      
-// export async function getAllTodosByUserId(userId: string): Promise<TodoItem>{
-//     const result = await docClient.query({
-//         TableName : todosTable,
-        
-//         KeyConditionExpression: 'userID = :userID',
-//         ExpressionAttributeValues: {
-//             ':userID': userId
-//         }
-//     }).promise()
-//     return result.Items as TodoItem[]
 
-// }
 function createDynamoDBClient() {
     if (process.env.IS_OFFLINE) {
       console.log('Creating a local DynamoDB instance')
